@@ -10,5 +10,5 @@ module.exports = {
     'partials/page-end.html',
   ],
   'swSrc': 'sw.js',
-  'swDest': 'docs/public/sw.js',
+  'swDest': 'docs/sw.js',
 };

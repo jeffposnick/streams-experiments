@@ -1,23 +1,22 @@
-/* eslint max-len: 'off', require-jsdoc: 'off' */
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.0.0-rc2/workbox-sw.js');
-
-// Place holder for precached assets
-workbox.precaching.precacheAndRoute([]);
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.0.0-rc.2/workbox-sw.js');
 
 // Make this a debug build
 workbox.setConfig({
   debug: true,
 });
 
-const HEAD = 'partials/page-top.html';
-const FOOT = 'partials/page-bottom.html';
-const ERROR = 'partials/page-error.html';
+// Place holder for precached assets
+workbox.precaching.precacheAndRoute([]);
 
-const cacheStrategy = workbox.strategies.cacheFirst({
+const HEAD = workbox.precaching.getCacheKeyForURL('partials/page-start.html');
+const FOOT = workbox.precaching.getCacheKeyForURL('partials/page-end.html');
+const ERROR = workbox.precaching.getCacheKeyForURL('partials/404.html');
+
+const cacheStrategy = new workbox.strategies.CacheFirst({
   cacheName: workbox.core.cacheNames.precache,
 });
 
-const networkStrategy = workbox.strategies.staleWhileRevalidate({
+const networkStrategy = new workbox.strategies.StaleWhileRevalidate({
   cacheName: 'content',
   plugins: [
     new workbox.expiration.Plugin({
